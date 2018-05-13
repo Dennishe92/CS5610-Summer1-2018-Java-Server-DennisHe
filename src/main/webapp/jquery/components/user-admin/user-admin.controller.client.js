@@ -1,15 +1,19 @@
 (function () {
 
-    jQuery(main);
+    $(main);
 
-    var tbody;
-    var template;
+    var $usernameFld, $passwordFld;
+    var $removeBtn, $editBtn, $createBtn;
+    var $firstNameFld, $lastNameFld;
+    var $roleFld;
+    var $userRowTemplate, $tbody;
     var userService = new UserServiceClient();
 
     function main() {
-        tbody = $('tbody');
-        template = $('.template');
-        $('#createUser').click(createUser);
+        $tbody = $('tbody');
+        $userRowTemplate = $('.template');
+        $createBtn = $('#createUser');
+        $createBtn.click(createUser);
 
         findAllUsers();
     }
@@ -24,16 +28,18 @@
     function createUser() {
         console.log('createUser');
 
-        var username = $('#usernameFld').val();
-        var password = $('#passwordFld').val();
-        var firstName = $('#firstNameFld').val();
-        var lastName = $('#lastNameFld').val();
+        $usernameFld = $('#usernameFld').val();
+        $passwordFld = $('#passwordFld').val();
+        $firstNameFld = $('#firstNameFld').val();
+        $lastNameFld = $('#lastNameFld').val();
+        $roleFld = $('#roleFld').val();
 
         var user = {
-            username: username,
-            password: password,
-            firstName: firstName,
-            lastName: lastName
+            username: $usernameFld,
+            password: $passwordFld,
+            firstName: $firstNameFld,
+            lastName: $lastNameFld,
+            role: $roleFld
         };
 
         userService
@@ -42,28 +48,33 @@
     }
 
     function renderUsers(users) {
-        tbody.empty();
+        $tbody.empty();
 
         for(var i=0; i<users.length; i++) {
             var user = users[i];
-            var clone = template.clone();
+            var clone = $userRowTemplate.clone();
 
             clone.attr('id', user.id);
 
             clone.find('.delete').click(deleteUser);
             clone.find('.edit').click(editUser);
 
-            clone.find('.username')
-                .html(user.username);
-            tbody.append(clone);
+            clone.find('.username').html(user.username);
+            //clone.find('.password').html(user.password);
+            clone.find('.firstName').html(user.firstName);
+            clone.find('.lastName').html(user.lastName);
+            clone.find('.role').html(user.role);
+
+            $tbody.append(clone);
         }
     }
 
     function deleteUser(event) {
         console.log('deleteUser');
         console.log(event);
-        var deleteBtn = $(event.currentTarget);
-        var userId = deleteBtn
+        $removeBtn = $(event.currentTarget);
+        var userId = $removeBtn
+            .parent()
             .parent()
             .parent()
             .attr('id');
