@@ -32,7 +32,10 @@
         if (response == null) {
             alert('username already exists')
         } else {
-            alert('account created')
+            alert('Account created, please click login.')
         }
+        $('#usernameFld').val("");
+        $('#passwordFld').val("");
+        $('#verifyPasswordFld').val("");
     }
 }) ();
