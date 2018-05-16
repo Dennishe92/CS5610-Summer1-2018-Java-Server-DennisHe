@@ -8,12 +8,25 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.updateUser = updateUser;
 
+    this.register = register;
+
     this.login = login;
+
+    this.updateProfile = updateProfile;
+    this.getProfile = getProfile;
+    this.logout = logout;
+
 
     this.url =
         'http://localhost:8080/api/user';
+    this.REGISTER_URL =
+        'http://localhost:8080/api/register';
     this.LOGIN_URL =
         'http://localhost:8080/api/login';
+    this.PROFILE_URL =
+        'http://localhost:8080/api/profile';
+
+
 
     var self = this;
 
@@ -58,31 +71,88 @@ function UserServiceClient() {
             }
         })
             .then(function(response) {
-                if (response.bodyUsed) {
-                    return reponse.json();
-                } else {
+                if (response.status === 409) {
                     return null;
+                } else {
+                    return response.json();
                 }
             });
     }
 
-    function login(username, password) {
-        return fetch(self.LOGIN_URL, {
+    function register(user) {
+        return fetch(self.REGISTER_URL, {
             method: 'post',
-            body: JSON.stringify({username: username, password: password}),
+            body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'
             }
+        })
+            .then(function(response) {
+                if(response.status === 409) {
+                    return null;
+                } else {
+                    return response.json();
+                }
+            });
+    }
+
+    function login(user) {
+        return fetch(self.LOGIN_URL, {
+            method: 'post',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(function(response) {
+                if(response.status === 409) {
+                    return null;
+                } else {
+                    //console.log(response.json());
+                    return response.json();
+                }
+            });
+    }
+
+
+    function updateProfile(user) {
+        return fetch(self.PROFILE_URL, {
+            method: 'put',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type' : 'application/json'
+            }
+        })
+            .then(function(response) {
+                if(response.status === 409) {
+                    return null;
+                } else {
+                    return response.json();
+                }
+            });
+    }
+
+    function getProfile() {
+        return fetch(self.PROFILE_URL)
+            .then(function(response) {
+                if(response.status === 409) {
+                    return null;
+                } else {
+                    return response.json();
+                }
         });
     }
 
+    function logout() {
+        return fetch(self.PROFILE_URL, {
+            method: 'delete'
+        });
+    }
 
     //RESTFUL API
     // 'put' to update
     // 'post' to create
     // 'get' to read
     // 'delete' for removal
-
-
 
 }

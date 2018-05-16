@@ -3,29 +3,65 @@
 
     var userService = new UserServiceClient();
 
-    var $staticEmail;
-    var $firstName;
-    var $lastName;
+    var $usernameFld
+    var $phoneFld;
+    var $emailFld;
+    var $roleFld;
+    var $dateOfBirthFld;
+
     var $updateBtn;
+    var $logoutBtn;
 
     function init() {
-        $staticEmail = $('#staticEmail');
-        $firstName = $('#firstName');
-        $lastName = $('#lastName');
-        $updateBtn = $('#updateBtn')
-            .click(updateUser);
 
-        findUserById(682);
+        $usernameFld = $('#usernameFld');
+        $phoneFld = $('#phoneFld');
+        $emailFld = $('#emailFld');
+        $roleFld = $('#roleFld');
+        $dateOfBirthFld = $('#dateOfBirthFld');
+
+        $updateBtn = $('#updateBtn');
+        $updateBtn.click(updateProfile);
+
+        $logoutBtn = $('#logoutBtn');
+        $logoutBtn.click(logout);
+
+        userService
+            .getProfile()
+            .then(fetchProfile);
     }
 
-    function updateUser() {
+    function fetchProfile(user) {
+        if(user != null) {
+            $('#usernameFld').val(user.username);
+            $('#phoneFld').val(user.phone);
+            $('#emailFld').val(user.email);
+            $('#roleFld').val(user.role);
+            $("#dateOfBirthFld").val(parseISOString(user.dateOfBirth));
+        }
+    }
+
+    function parseISOString(string) {
+        var index = string.indexOf("T");
+        return string.substring(0, index);
+    }
+
+
+
+    function updateProfile() {
+        var date = new Date($dateOfBirthFld.val()).toISOString();
+        // var date = $dateOfBirthFld.val();
+        // date = data.substring(0, date.indexOf('T'));
+
         var user = {
-            firstName: $firstName.val(),
-            lastName: $lastName.val()
+            phone: $phoneFld.val(),
+            email: $emailFld.val(),
+            role: $roleFld.val(),
+            dateOfBirth: date
         };
 
         userService
-            .updateUser(682, user)
+            .updateProfile(user)
             .then(success);
     }
 
@@ -37,18 +73,29 @@
         }
     }
 
-    function findUserById(userId) {
+    // function findUserById(userId) {
+    //     userService
+    //         .findUserById(userId)
+    //         .then(renderUser);
+    // }
+
+    // function renderUser(user) {
+    //     console.log(user);
+    //     $usernameFld.val(user.username);
+    //     $phoneFld.val(user.phone);
+    //     $emailFld.val(user.email);
+    //     $roleFld.val(user.role);
+    //     $dateOfBirthFld.val(user.dateOfBirth);
+    // }
+
+    function logout() {
+        console.log("logging out");
+
         userService
-            .findUserById(userId)
-            .then(renderUser);
-    }
+            .logout();
 
-    function renderUser(user) {
-        console.log(user);
-        $staticEmail.val(user.username);
-        $firstName.val(user.firstName);
-        $lastName.val(user.lastName);
-
+        var url = "../login/login.template.client.html";
+        window.location.href = url;
     }
 
 })();
