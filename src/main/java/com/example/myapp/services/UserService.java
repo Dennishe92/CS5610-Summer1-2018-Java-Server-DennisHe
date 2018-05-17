@@ -120,8 +120,7 @@ public class UserService {
 	// Update Profile
 	@PutMapping("/api/profile")
 	public User	updateProfile(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
-		//Optional<User> data = repository.findById(userId);
-		//User currentUser = (User) session.getAttribute("currentUser");
+		
 		User cur = (User) request.getServletContext().getAttribute("currentUser");
 		
 		if (cur != null) {

@@ -9,28 +9,30 @@
 
        $usernameFld = $('#usernameFld');
        $passwordFld = $('#passwordFld');
-       $verifyPasswordFld = $('#verifyPasswordFld').val();
+       $verifyPasswordFld = $('#verifyPasswordFld');
 
        $registerBtn = $('#registerBtn');
        $registerBtn.click(register);
    }
 
    function register() {
-       console.log('registerUser');
+       if($passwordFld.val() != $verifyPasswordFld.val()) {
+           alert("Please make sure your passwords match");
+       } else {
+           var user = {
+               username: $usernameFld.val(),
+               password: $passwordFld.val()
+           }
 
-       var user = {
-           username: $usernameFld.val(),
-           password: $passwordFld.val()
+           userService
+               .register(user)
+               .then(success);
        }
-
-       userService
-           .register(user)
-           .then(success);
    }
 
     function success(response) {
         if (response == null) {
-            alert('username already exists')
+            alert('Username already exists. Please use another username.')
         } else {
             alert('Account created, please click login.')
         }

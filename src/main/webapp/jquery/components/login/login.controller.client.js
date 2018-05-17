@@ -10,8 +10,7 @@
         $usernameFld = $('#usernameFld');
         $passwordFld = $('#passwordFld');
 
-        $loginBtn = $('#loginBtn');
-        $loginBtn.click(login);
+        $loginBtn = $('#loginBtn').click(login);
     }
 
     function login () {
@@ -28,7 +27,7 @@
     function success(response) {
         console.log("success here");
         if (response == null) {
-            alert('unable to login')
+            alert('Login unsuccessful. Please make sure your username and password are correct.')
         } else {
             alert("success");
             goToProfile();

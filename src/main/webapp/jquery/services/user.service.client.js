@@ -108,7 +108,6 @@ function UserServiceClient() {
                 if(response.status === 409) {
                     return null;
                 } else {
-                    //console.log(response.json());
                     return response.json();
                 }
             });
