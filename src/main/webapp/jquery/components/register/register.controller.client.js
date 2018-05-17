@@ -18,6 +18,8 @@
    function register() {
        if($passwordFld.val() != $verifyPasswordFld.val()) {
            alert("Please make sure your passwords match");
+           $('#passwordFld').val("");
+           $('#verifyPasswordFld').val("");
        } else {
            var user = {
                username: $usernameFld.val(),
