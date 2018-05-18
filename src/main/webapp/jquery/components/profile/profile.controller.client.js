@@ -3,7 +3,10 @@
 
     var userService = new UserServiceClient();
 
-    var $usernameFld
+    var $usernameFld;
+    var $passwordFld;
+    var $firstNameFld;
+    var $lastNameFld;
     var $phoneFld;
     var $emailFld;
     var $roleFld;
@@ -15,6 +18,9 @@
     function init() {
 
         $usernameFld = $('#usernameFld');
+        $passwordFld = $('#passwordFld');
+        $firstNameFld = $('#firstNameFld');
+        $lastNameFld = $('#lastNameFld');
         $phoneFld = $('#phoneFld');
         $emailFld = $('#emailFld');
         $roleFld = $('#roleFld');
@@ -34,6 +40,9 @@
     function fetchProfile(user) {
         if(user != null) {
             $('#usernameFld').val(user.username);
+            $('#passwordFld').val(user.password);
+            $('#firstNameFld').val(user.firstName);
+            $('#lastNameFld').val(user.lastName);
             $('#phoneFld').val(user.phone);
             $('#emailFld').val(user.email);
             $('#roleFld').val(user.role);
@@ -54,6 +63,9 @@
         // date = data.substring(0, date.indexOf('T'));
 
         var user = {
+            password: $passwordFld.val(),
+            firstName: $firstNameFld.val(),
+            lastName: $lastNameFld.val(),
             phone: $phoneFld.val(),
             email: $emailFld.val(),
             role: $roleFld.val(),

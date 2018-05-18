@@ -124,6 +124,9 @@ public class UserService {
 		User cur = (User) request.getServletContext().getAttribute("currentUser");
 		
 		if (cur != null) {
+			cur.setPassword(user.getPassword());
+			cur.setFirstName(user.getFirstName());
+			cur.setLastName(user.getLastName());
 			cur.setPhone(user.getPhone());
 			cur.setEmail(user.getEmail());
 			cur.setRole(user.getRole());
