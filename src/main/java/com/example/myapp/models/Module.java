@@ -1,5 +1,7 @@
 package com.example.myapp.models;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -10,6 +12,9 @@ public class Module {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String title;
+	
+	@OneToMany(mappedBy="module")
+	private List<Lesson> lessons;
 	
 	@ManyToOne
 	@JsonIgnore
