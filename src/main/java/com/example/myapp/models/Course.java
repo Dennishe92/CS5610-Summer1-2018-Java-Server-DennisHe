@@ -17,7 +17,7 @@ public class Course {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modified;
 	
-	@OneToMany(mappedBy="course")
+	@OneToMany(mappedBy="course",cascade = CascadeType.ALL, orphanRemoval=true)
 	private List<Module> modules;
 	
 	

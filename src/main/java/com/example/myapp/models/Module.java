@@ -13,7 +13,7 @@ public class Module {
 	private int id;
 	private String title;
 	
-	@OneToMany(mappedBy="module")
+	@OneToMany(mappedBy="module", cascade = CascadeType.ALL,orphanRemoval=true)
 	private List<Lesson> lessons;
 	
 	@ManyToOne
@@ -38,6 +38,13 @@ public class Module {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
+	public List<Lesson> getLessons() {
+		return lessons;
+	}
+	public void setLessons(List<Lesson> lessons) {
+		this.lessons = lessons;
+	}
+	
 	
 	
 }
