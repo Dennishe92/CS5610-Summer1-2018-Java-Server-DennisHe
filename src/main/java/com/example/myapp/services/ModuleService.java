@@ -60,6 +60,15 @@ public class ModuleService {
 	public List<Module> findAllModules() {
 		return (List<Module>) moduleRepository.findAll();
 	}
+	
+	@GetMapping("/api/module/{moduleId}")
+	public Module findModuleById(@PathVariable("moduleId") int moduleId) {
+		Optional<Module> data = moduleRepository.findById(moduleId);
+		if(data.isPresent()) {
+			return data.get();
+		}
+		return null;
+	}
 
 
 }

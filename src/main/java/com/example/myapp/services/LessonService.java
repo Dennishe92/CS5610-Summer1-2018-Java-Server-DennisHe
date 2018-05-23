@@ -68,6 +68,16 @@ public class LessonService {
 		return (List<Lesson>) lessonRepository.findAll();
 	}
 	
+	@GetMapping("/api/lesson/{lessonId}")
+	public Lesson findLessonById(@PathVariable("lessonId") int lessonId) {
+		Optional<Lesson> data = lessonRepository.findById(lessonId);
+		if(data.isPresent()) {
+			return data.get();
+		}
+		return null;
+	}
+
+	
 	
 	
 }
