@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Widget {
@@ -11,7 +14,13 @@ public class Widget {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String text;
+	private int order; 
 	private String widgetType;
+	
+
+	@ManyToOne
+	@JsonIgnore
+	private Lesson lesson;
 	
 	public int getId() {
 		return id;
@@ -31,6 +40,20 @@ public class Widget {
 	public void setWidgetType(String widgetType) {
 		this.widgetType = widgetType;
 	}
+	public int getOrder() {
+		return order;
+	}
+	public void setOrder(int order) {
+		this.order = order;
+	}
+	public Lesson getLesson() {
+		return lesson;
+	}
+	public void setLesson(Lesson lesson) {
+		this.lesson = lesson;
+	}
+	
+	
 	
 	
 	

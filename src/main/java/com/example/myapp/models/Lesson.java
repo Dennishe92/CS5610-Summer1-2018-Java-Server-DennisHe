@@ -1,5 +1,7 @@
 package com.example.myapp.models;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -10,6 +12,9 @@ public class Lesson {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String title;
+	
+	@OneToMany(mappedBy="lesson", cascade = CascadeType.ALL,orphanRemoval=true)
+	private List<Widget> widgets;
 	
 	@ManyToOne
 	@JsonIgnore
@@ -38,6 +43,15 @@ public class Lesson {
 	public void setModule(Module module) {
 		this.module = module;
 	}
+
+	public List<Widget> getWidgets() {
+		return widgets;
+	}
+
+	public void setWidgets(List<Widget> widgets) {
+		this.widgets = widgets;
+	}
+	
 	
 	
 
