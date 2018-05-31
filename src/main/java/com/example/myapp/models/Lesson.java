@@ -13,7 +13,7 @@ public class Lesson {
 	private int id;
 	private String title;
 	
-	@OneToMany(mappedBy="lesson", cascade = CascadeType.ALL,orphanRemoval=true)
+	@OneToMany(mappedBy="lesson", orphanRemoval=true)
 	private List<Widget> widgets;
 	
 	@ManyToOne

@@ -79,11 +79,10 @@ public class WidgetService {
 	public List<Widget> findAllWidgetsForLesson(
 			@PathVariable("lessonId") int lessonId) {
 		
-		Optional<Lesson> data = lessonRepository.findById(lessonId);
+		Optional <Lesson> data = lessonRepository.findById(lessonId);
 		
 		if(data.isPresent()) {
-			Lesson lesson = data.get();
-			List<Widget> result = lesson.getWidgets();
+			List<Widget> result = data.get().getWidgets();
 			Collections.sort(result);
 			return result;
 			//return lesson.getWidgets();
@@ -95,14 +94,14 @@ public class WidgetService {
 	@PostMapping("/api/lesson/{lessonId}/widget/save")
 	public void saveAllWidgetsForLesson(@PathVariable("lessonId") int lessonId, 
 			@RequestBody List<Widget> widgets) {
-		//System.out.println("lessonID " + lessonId);
+		System.out.println("lessonID " + lessonId);
 		Optional <Lesson> data = lessonRepository.findById(lessonId);
 		if(data.isPresent()) {
 //			Lesson old = data.get();
 			List<Widget> oldList = data.get().getWidgets();
 //			for(Widget w : oldList) {
-//				widgetRepository.delete(w);
-//				}
+//			widgetRepository.deleteById(w.getId());;
+//			}
 			widgetRepository.deleteAll(oldList);
 		
 //			Lesson lesson = data.get();
