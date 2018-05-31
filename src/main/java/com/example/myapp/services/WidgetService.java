@@ -1,5 +1,6 @@
 package com.example.myapp.services;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,10 +49,6 @@ public class WidgetService {
 		widgetRepository.deleteById(widgetId);
 	}
 	
-	@GetMapping("/api/widget")
-	public List<Widget> findAllWidgets() {
-		return (List<Widget>) widgetRepository.findAll();
-	}
 	
 	@GetMapping("/api/widget/{widgetId}")
 	public Widget findWidgetById(@PathVariable("widgetId") int widgetId) {
@@ -62,29 +59,23 @@ public class WidgetService {
 		return null;
 	}
 	
-//	@PostMapping("/api/course/{courseId}/module/{moduleId}/lesson/{lessonId}/widget/save")
-//	public void saveAllWidgets(@RequestBody List<WidgetJsonBean> widgets) {
-//		for (WidgetJsonBean widget : widgets) {
-//			Widget w;
-//			int i = widget.getLessonId();
-//			Optional<Lesson> l = lessonRepository.findById(i);
-//	
-//			
-//			
+	@GetMapping("/api/widget")
+	public List<Widget> findAllWidgets() {
+		return (List<Widget>) widgetRepository.findAll();
+	}
+	
+//	@PostMapping("/api/lesson/{lessonId}/widget/save")
+//	public void saveAllWidgets(@RequestBody List<Widget> widgets) {
+//		widgetRepository.deleteAll();
+//		System.out.println(widgets.toString());
+//		for(Widget widget: widgets) {
+//			System.out.println(widget.getLesson());
+//			widgetRepository.save(widget);
 //		}
 //	}
 	
-	@PostMapping("/api/course/{courseId}/module/{moduleId}/lesson/{lessonId}/widget/save")
-	public void saveAllWidgets(@RequestBody List<Widget> widgets) {
-		widgetRepository.deleteAll();
-		System.out.println(widgets.toString());
-		for(Widget widget: widgets) {
-			System.out.println(widget.getLesson());
-			widgetRepository.save(widget);
-		}
-	}
-	
-	@GetMapping("/api/course/{courseId}/module/{moduleId}/lesson/{lessonId}/widget")
+	// We need to use this 
+	@GetMapping("/api/lesson/{lessonId}/widget")
 	public List<Widget> findAllWidgetsForLesson(
 			@PathVariable("lessonId") int lessonId) {
 		
@@ -92,11 +83,35 @@ public class WidgetService {
 		
 		if(data.isPresent()) {
 			Lesson lesson = data.get();
-			return lesson.getWidgets();
+			List<Widget> result = lesson.getWidgets();
+			Collections.sort(result);
+			return result;
+			//return lesson.getWidgets();
 		}
 		return null;		
 	}
 	
+	// We need to use this
+	@PostMapping("/api/lesson/{lessonId}/widget/save")
+	public void saveAllWidgetsForLesson(@PathVariable("lessonId") int lessonId, 
+			@RequestBody List<Widget> widgets) {
+		//System.out.println("lessonID " + lessonId);
+		Optional <Lesson> data = lessonRepository.findById(lessonId);
+		if(data.isPresent()) {
+//			Lesson old = data.get();
+			List<Widget> oldList = data.get().getWidgets();
+//			for(Widget w : oldList) {
+//				widgetRepository.delete(w);
+//				}
+			widgetRepository.deleteAll(oldList);
+		
+//			Lesson lesson = data.get();
+			for(Widget widget: widgets) {
+				widget.setLesson(data.get());
+			}
+			widgetRepository.saveAll(widgets);
+		}
+	}
 	
 	
 	

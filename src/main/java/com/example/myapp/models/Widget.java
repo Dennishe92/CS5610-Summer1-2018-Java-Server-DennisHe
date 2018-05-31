@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Widget {
+public class Widget implements Comparable<Widget>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -17,9 +17,9 @@ public class Widget {
 	private int widgetOrder; 
 	private String widgetType;
 	private String name;
-	private String style;
-	private String width;
-	private String height;
+//	private String style;
+//	private String width;
+//	private String height;
 	private String listType;
 	
 
@@ -57,24 +57,24 @@ public class Widget {
 	public void setLesson(Lesson lesson) {
 		this.lesson = lesson;
 	}
-	public String getStyle() {
-		return style;
-	}
-	public void setStyle(String style) {
-		this.style = style;
-	}
-	public String getWidth() {
-		return width;
-	}
-	public void setWidth(String width) {
-		this.width = width;
-	}
-	public String getHeight() {
-		return height;
-	}
-	public void setHeight(String height) {
-		this.height = height;
-	}
+//	public String getStyle() {
+//		return style;
+//	}
+//	public void setStyle(String style) {
+//		this.style = style;
+//	}
+//	public String getWidth() {
+//		return width;
+//	}
+//	public void setWidth(String width) {
+//		this.width = width;
+//	}
+//	public String getHeight() {
+//		return height;
+//	}
+//	public void setHeight(String height) {
+//		this.height = height;
+//	}
 	public String getName() {
 		return name;
 	}
@@ -86,6 +86,11 @@ public class Widget {
 	}
 	public void setListType(String listType) {
 		this.listType = listType;
+	}
+	
+	@Override
+	public int compareTo(Widget other) {
+		return this.widgetOrder - other.widgetOrder;
 	}
 	
 	
