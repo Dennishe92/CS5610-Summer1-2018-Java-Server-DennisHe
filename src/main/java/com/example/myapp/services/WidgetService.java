@@ -78,7 +78,7 @@ public class WidgetService {
 	@GetMapping("/api/lesson/{lessonId}/widget")
 	public List<Widget> findAllWidgetsForLesson(
 			@PathVariable("lessonId") int lessonId) {
-		
+		System.out.println("lessonID " + lessonId);
 		Optional <Lesson> data = lessonRepository.findById(lessonId);
 		
 		if(data.isPresent()) {
