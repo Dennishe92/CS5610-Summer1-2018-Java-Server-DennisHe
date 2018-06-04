@@ -17,10 +17,11 @@ public class Widget implements Comparable<Widget>{
 	private int widgetOrder; 
 	private String widgetType;
 	private String name;
-//	private String style;
-//	private String width;
-//	private String height;
+	private String style;
+	private String width;
+	private String height;
 	private String listType;
+	private String href;
 	
 
 	@ManyToOne
@@ -57,24 +58,24 @@ public class Widget implements Comparable<Widget>{
 	public void setLesson(Lesson lesson) {
 		this.lesson = lesson;
 	}
-//	public String getStyle() {
-//		return style;
-//	}
-//	public void setStyle(String style) {
-//		this.style = style;
-//	}
-//	public String getWidth() {
-//		return width;
-//	}
-//	public void setWidth(String width) {
-//		this.width = width;
-//	}
-//	public String getHeight() {
-//		return height;
-//	}
-//	public void setHeight(String height) {
-//		this.height = height;
-//	}
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
+	}
+	public String getWidth() {
+		return width;
+	}
+	public void setWidth(String width) {
+		this.width = width;
+	}
+	public String getHeight() {
+		return height;
+	}
+	public void setHeight(String height) {
+		this.height = height;
+	}
 	public String getName() {
 		return name;
 	}
@@ -88,6 +89,13 @@ public class Widget implements Comparable<Widget>{
 		this.listType = listType;
 	}
 	
+	
+	public String getHref() {
+		return href;
+	}
+	public void setHref(String href) {
+		this.href = href;
+	}
 	@Override
 	public int compareTo(Widget other) {
 		return this.widgetOrder - other.widgetOrder;

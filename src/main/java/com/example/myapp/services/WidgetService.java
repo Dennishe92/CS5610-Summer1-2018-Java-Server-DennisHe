@@ -57,7 +57,7 @@ public class WidgetService {
 			return data.get();
 		}
 		return null;
-	}
+	}	
 	
 	@GetMapping("/api/widget")
 	public List<Widget> findAllWidgets() {
