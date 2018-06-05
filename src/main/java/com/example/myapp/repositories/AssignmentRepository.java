@@ -1,5 +1,9 @@
 package com.example.myapp.repositories;
 
-public interface AssignmentRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import com.example.myapp.models.Assignment;
+
+public interface AssignmentRepository extends CrudRepository <Assignment, Integer> {
 
 }
