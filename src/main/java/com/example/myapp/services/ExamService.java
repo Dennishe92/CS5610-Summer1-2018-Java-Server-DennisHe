@@ -160,24 +160,24 @@ public class ExamService {
 	
 	
 	
-	@GetMapping("/api/truefalse/{questionId}")
-	public TrueFalseQuestion findTrueFalseQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<TrueFalseQuestion> optional = trueFalseRepository.findById(questionId);
-		if(optional.isPresent()) {
-			return optional.get();
-		}
-		return null;
-	}
-	
-	
-	@GetMapping("/api/multi/{questionId}")
-	public MultipleChoiceQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<MultipleChoiceQuestion> optional = mutiRepo.findById(questionId);
-		if(optional.isPresent()) {
-			return optional.get();
-		}
-		return null;
-	}
+//	@GetMapping("/api/truefalse/{questionId}")
+//	public TrueFalseQuestion findTrueFalseQuestionById(@PathVariable("questionId") int questionId) {
+//		Optional<TrueFalseQuestion> optional = trueFalseRepository.findById(questionId);
+//		if(optional.isPresent()) {
+//			return optional.get();
+//		}
+//		return null;
+//	}
+//	
+//	
+//	@GetMapping("/api/multi/{questionId}")
+//	public MultipleChoiceQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
+//		Optional<MultipleChoiceQuestion> optional = mutiRepo.findById(questionId);
+//		if(optional.isPresent()) {
+//			return optional.get();
+//		}
+//		return null;
+//	}
 
 
 }
