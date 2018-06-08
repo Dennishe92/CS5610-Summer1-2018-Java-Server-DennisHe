@@ -24,6 +24,7 @@ public class Question {
 	@ManyToOne
 	@JsonIgnore
 	private Exam exam;
+	
 	public int getId() {
 		return id;
 	}

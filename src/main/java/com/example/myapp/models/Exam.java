@@ -15,6 +15,7 @@ public class Exam extends Widget{
 	@OneToMany(mappedBy="exam")
 	@JsonIgnore
 	private List<Question> questions;
+	
 	public String getTitle() {
 		return title;
 	}

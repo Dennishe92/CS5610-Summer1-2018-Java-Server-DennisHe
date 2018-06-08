@@ -13,7 +13,6 @@ public class Assignment extends Widget {
 	private String title;
 	private String description;
 	private int points;
-	private String answer;
 	
 	public String getTitle() {
 		return title;
@@ -33,15 +32,6 @@ public class Assignment extends Widget {
 	public void setPoints(int points) {
 		this.points = points;
 	}
-	public String getAnswer() {
-		return answer;
-	}
-	public void setAnswer(String answer) {
-		this.answer = answer;
-	}
-	
-	
-	
 	
 	
 }
