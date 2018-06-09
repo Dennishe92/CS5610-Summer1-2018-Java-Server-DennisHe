@@ -36,13 +36,15 @@ public class ExamService {
 	@Autowired
 	LessonRepository lessonRepository;
 	@Autowired
-	TrueFalseQuestionRepository trueFalseRepository;
-	@Autowired
-	MultipleChoiceQuestionRepository multipleChoiceRepository;
-	@Autowired 
-	EssayQuestionRepository	essayRepository;
-	@Autowired 
-	FillInTheBlankQuestionRepository fillRepository;
+//	TrueFalseQuestionRepository trueFalseRepository;
+//	@Autowired
+//	MultipleChoiceQuestionRepository multipleChoiceRepository;
+//	@Autowired 
+//	EssayQuestionRepository	essayRepository;
+//	@Autowired 
+//	FillInTheBlankQuestionRepository fillRepository;
+
+	
 	
 	@GetMapping("/api/exam")
 	public List<Exam> findAllExams() {
@@ -105,57 +107,57 @@ public class ExamService {
 		examRepository.deleteById(examId);
 	}
 	
-	@PostMapping("/api/exam/{examId}/essay")
-	public EssayQuestion createEssayQuestion(@PathVariable("examId") int examId,
-			@RequestBody EssayQuestion newEssayQuestion) {
-		Optional<Exam> data = examRepository.findById(examId);
-		
-		if(data.isPresent()) {
-			Exam exam = data.get();
-			newEssayQuestion.setExam(exam);
-			return essayRepository.save(newEssayQuestion);
-		}
-		return null;
-	}
-	
-	@PostMapping("/api/exam/{examId}/choice")
-	public MultipleChoiceQuestion createMultipleChoiceQuestion(@PathVariable("examId") int examId,
-			@RequestBody MultipleChoiceQuestion newMultipleChoiceQuestion) {
-		Optional<Exam> data = examRepository.findById(examId);
-		
-		if(data.isPresent()) {
-			Exam exam = data.get();
-			newMultipleChoiceQuestion.setExam(exam);
-			return multipleChoiceRepository.save(newMultipleChoiceQuestion);
-		}
-		return null;
-	}
-	
-	@PostMapping("/api/exam/{examId}/blanks")
-	public FillInTheBlankQuestion createFillIntheBlankQuestion(@PathVariable("examId") int examId,
-			@RequestBody FillInTheBlankQuestion newFillInTheBlankQuestion) {
-		Optional<Exam> data = examRepository.findById(examId);
-		
-		if(data.isPresent()) {
-			Exam exam = data.get();
-			newFillInTheBlankQuestion.setExam(exam);
-			return fillRepository.save(newFillInTheBlankQuestion);
-		}
-		return null;
-	}
-	
-	@PostMapping("/api/exam/{examId}/truefalse")
-	public TrueFalseQuestion TrueFalse(@PathVariable("examId") int examId,
-			@RequestBody TrueFalseQuestion newTrueFalseQuestion) {
-		Optional<Exam> data = examRepository.findById(examId);
-		
-		if(data.isPresent()) {
-			Exam exam = data.get();
-			newTrueFalseQuestion.setExam(exam);
-			return trueFalseRepository.save(newTrueFalseQuestion);
-		}
-		return null;
-	}
+//	@PostMapping("/api/exam/{examId}/essay")
+//	public EssayQuestion createEssayQuestion(@PathVariable("examId") int examId,
+//			@RequestBody EssayQuestion newEssayQuestion) {
+//		Optional<Exam> data = examRepository.findById(examId);
+//		
+//		if(data.isPresent()) {
+//			Exam exam = data.get();
+//			newEssayQuestion.setExam(exam);
+//			return essayRepository.save(newEssayQuestion);
+//		}
+//		return null;
+//	}
+//	
+//	@PostMapping("/api/exam/{examId}/choice")
+//	public MultipleChoiceQuestion createMultipleChoiceQuestion(@PathVariable("examId") int examId,
+//			@RequestBody MultipleChoiceQuestion newMultipleChoiceQuestion) {
+//		Optional<Exam> data = examRepository.findById(examId);
+//		
+//		if(data.isPresent()) {
+//			Exam exam = data.get();
+//			newMultipleChoiceQuestion.setExam(exam);
+//			return multipleChoiceRepository.save(newMultipleChoiceQuestion);
+//		}
+//		return null;
+//	}
+//	
+//	@PostMapping("/api/exam/{examId}/blanks")
+//	public FillInTheBlankQuestion createFillIntheBlankQuestion(@PathVariable("examId") int examId,
+//			@RequestBody FillInTheBlankQuestion newFillInTheBlankQuestion) {
+//		Optional<Exam> data = examRepository.findById(examId);
+//		
+//		if(data.isPresent()) {
+//			Exam exam = data.get();
+//			newFillInTheBlankQuestion.setExam(exam);
+//			return fillRepository.save(newFillInTheBlankQuestion);
+//		}
+//		return null;
+//	}
+//	
+//	@PostMapping("/api/exam/{examId}/truefalse")
+//	public TrueFalseQuestion TrueFalse(@PathVariable("examId") int examId,
+//			@RequestBody TrueFalseQuestion newTrueFalseQuestion) {
+//		Optional<Exam> data = examRepository.findById(examId);
+//		
+//		if(data.isPresent()) {
+//			Exam exam = data.get();
+//			newTrueFalseQuestion.setExam(exam);
+//			return trueFalseRepository.save(newTrueFalseQuestion);
+//		}
+//		return null;
+//	}
 	
 	
 	
