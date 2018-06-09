@@ -18,7 +18,8 @@ public class Question {
 	private int id;
 	private String title;
 	private int points;
-	private String subtitle;
+	private String description;
+	private String instructions;
 	private String type;
 	
 	@ManyToOne
@@ -37,12 +38,6 @@ public class Question {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getSubtitle() {
-		return subtitle;
-	}
-	public void setSubtitle(String subtitle) {
-		this.subtitle = subtitle;
-	}
 	public String getType() {
 		return type;
 	}
@@ -60,6 +55,18 @@ public class Question {
 	}
 	public void setPoints(int points) {
 		this.points = points;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getInstructions() {
+		return instructions;
+	}
+	public void setInstructions(String instructions) {
+		this.instructions = instructions;
 	}
 	
 	

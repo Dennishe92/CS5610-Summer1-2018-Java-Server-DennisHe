@@ -5,15 +5,16 @@ import javax.persistence.Entity;
 @Entity
 public class EssayQuestion extends Question {
 	
-	private String paragraph;
+	private String essayAnswer;
 
 	public String getEssayAnswer() {
-		return paragraph;
+		return essayAnswer;
 	}
 
 	public void setEssayAnswer(String essayAnswer) {
-		this.paragraph = essayAnswer;
+		this.essayAnswer = essayAnswer;
 	}
+
 	
 	
 }

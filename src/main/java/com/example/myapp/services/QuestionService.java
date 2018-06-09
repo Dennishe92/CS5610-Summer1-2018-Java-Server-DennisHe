@@ -44,7 +44,7 @@ public class QuestionService {
 		return null;		
 	}
 	
-	@DeleteMapping("/api/essay/{questionId}")
+	@DeleteMapping("/api/question/{questionId}")
 	public void deleteQuestionById(@PathVariable("questionId") int questionId) {
 		questionRepository.deleteById(questionId);
 	}
